@@ -1,0 +1,7 @@
+!*.vhd
+!*.wvf
+!*.qpf
+!*.qsf
+*.bak
+*.rpt
+*.summary
