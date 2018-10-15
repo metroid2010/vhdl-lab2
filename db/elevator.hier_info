@@ -1,0 +1,158 @@
+|elevator
+CLK => edge_det:ed.clk
+CLK => regist:r0.clk
+CLK => regist:r1.clk
+CLK => counter:ct.clk
+CLK => timer:tim.clk
+CLK => curr_state.IN1
+RESET => edge_det:ed.reset
+RESET => regist:r0.reset
+RESET => regist:r1.reset
+RESET => counter:ct.reset
+RESET => curr_state.IN1
+S => edge_det:ed.input
+B[0] => encoder:en.input[0]
+B[1] => encoder:en.input[1]
+B[2] => encoder:en.input[2]
+B[3] => encoder:en.input[3]
+SENSE <= sense_s.DB_MAX_OUTPUT_PORT_TYPE
+MOTOR <= MOTOR.DB_MAX_OUTPUT_PORT_TYPE
+OPENING <= OPENING$latch.DB_MAX_OUTPUT_PORT_TYPE
+BUSY <= busy_s.DB_MAX_OUTPUT_PORT_TYPE
+FLOOR[0] <= regist:r1.output[0]
+FLOOR[1] <= regist:r1.output[1]
+TARGET[0] <= regist:r0.output[0]
+TARGET[1] <= regist:r0.output[1]
+
+
+|elevator|encoder:en
+input[0] => Mux2.IN19
+input[1] => Mux1.IN5
+input[1] => Mux2.IN18
+input[2] => Mux0.IN5
+input[2] => Mux2.IN17
+input[3] => Mux0.IN4
+input[3] => Mux1.IN4
+input[3] => Mux2.IN16
+output[0] <= Mux1.DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= Mux0.DB_MAX_OUTPUT_PORT_TYPE
+act <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|elevator|edge_det:ed
+input => output.IN1
+input => q.DATAIN
+clk => q.CLK
+reset => q.ACLR
+output <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|elevator|regist:r0
+reset => s_out[0].ACLR
+reset => s_out[1].ACLR
+clk => s_out[0].CLK
+clk => s_out[1].CLK
+enable => s_out[0].OUTPUTSELECT
+enable => s_out[1].OUTPUTSELECT
+input[0] => s_out[0].DATAB
+input[1] => s_out[1].DATAB
+output[0] <= s_out[0].DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= s_out[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|elevator|regist:r1
+reset => s_out[0].ACLR
+reset => s_out[1].ACLR
+clk => s_out[0].CLK
+clk => s_out[1].CLK
+enable => s_out[0].OUTPUTSELECT
+enable => s_out[1].OUTPUTSELECT
+input[0] => s_out[0].DATAB
+input[1] => s_out[1].DATAB
+output[0] <= s_out[0].DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= s_out[1].DB_MAX_OUTPUT_PORT_TYPE
+
+
+|elevator|counter:ct
+sensor => s_count[0].OUTPUTSELECT
+sensor => s_count[1].OUTPUTSELECT
+reset => process_0.IN1
+clk => s_count[0].CLK
+clk => s_count[1].CLK
+enable => process_0.IN0
+sense => s_count.OUTPUTSELECT
+sense => s_count.OUTPUTSELECT
+count[0] <= s_count[0].DB_MAX_OUTPUT_PORT_TYPE
+count[1] <= s_count[1].DB_MAX_OUTPUT_PORT_TYPE
+carry_out <= carry_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|elevator|timer:tim
+clk => elapsed_s[0].CLK
+clk => elapsed_s[1].CLK
+clk => elapsed_s[2].CLK
+clk => elapsed_s[3].CLK
+clk => elapsed_s[4].CLK
+clk => elapsed_s[5].CLK
+clk => elapsed_s[6].CLK
+clk => elapsed_s[7].CLK
+clk => elapsed_s[8].CLK
+clk => elapsed_s[9].CLK
+clk => elapsed_s[10].CLK
+clk => elapsed_s[11].CLK
+clk => elapsed_s[12].CLK
+clk => elapsed_s[13].CLK
+clk => elapsed_s[14].CLK
+clk => elapsed_s[15].CLK
+clk => elapsed_s[16].CLK
+clk => elapsed_s[17].CLK
+clk => elapsed_s[18].CLK
+clk => elapsed_s[19].CLK
+clk => elapsed_s[20].CLK
+clk => elapsed_s[21].CLK
+clk => elapsed_s[22].CLK
+clk => elapsed_s[23].CLK
+clk => elapsed_s[24].CLK
+clk => elapsed_s[25].CLK
+clk => elapsed_s[26].CLK
+clk => elapsed_s[27].CLK
+clk => elapsed_s[28].CLK
+clk => elapsed_s[29].CLK
+clk => elapsed_s[30].CLK
+clk => elapsed_s[31].CLK
+reset => process_0.IN1
+enable => process_0.IN0
+elapsed[0] <= elapsed_s[0].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[1] <= elapsed_s[1].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[2] <= elapsed_s[2].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[3] <= elapsed_s[3].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[4] <= elapsed_s[4].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[5] <= elapsed_s[5].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[6] <= elapsed_s[6].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[7] <= elapsed_s[7].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[8] <= elapsed_s[8].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[9] <= elapsed_s[9].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[10] <= elapsed_s[10].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[11] <= elapsed_s[11].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[12] <= elapsed_s[12].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[13] <= elapsed_s[13].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[14] <= elapsed_s[14].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[15] <= elapsed_s[15].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[16] <= elapsed_s[16].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[17] <= elapsed_s[17].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[18] <= elapsed_s[18].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[19] <= elapsed_s[19].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[20] <= elapsed_s[20].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[21] <= elapsed_s[21].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[22] <= elapsed_s[22].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[23] <= elapsed_s[23].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[24] <= elapsed_s[24].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[25] <= elapsed_s[25].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[26] <= elapsed_s[26].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[27] <= elapsed_s[27].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[28] <= elapsed_s[28].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[29] <= elapsed_s[29].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[30] <= elapsed_s[30].DB_MAX_OUTPUT_PORT_TYPE
+elapsed[31] <= elapsed_s[31].DB_MAX_OUTPUT_PORT_TYPE
+
+

@@ -1,0 +1,8 @@
+
+State Machine - |elevator|curr_state
+Name curr_state.state_bit_2 curr_state.state_bit_1 curr_state.state_bit_0 
+curr_state.s0 0 0 0 
+curr_state.s1 0 0 1 
+curr_state.s2 0 1 0 
+curr_state.s3 1 0 0 
+curr_state.s4 0 1 1 

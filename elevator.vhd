@@ -12,7 +12,7 @@ entity elevator is
 port (
     CLK,RESET,S: in std_logic;
     B: in std_logic_vector(3 downto 0);
-    SENSE,MOTOR,OPENING: out std_logic;
+    SENSE,MOTOR,OPENING,BUSY: out std_logic;
     FLOOR,TARGET: out std_logic_vector(1 downto 0)
     );
 end elevator;
@@ -24,8 +24,7 @@ architecture a_elevator of elevator is
 	signal curr_state, next_state: state;
 	
 	-- waiting time for the door, adjustable
-	constant clk_period : time := 1 ms; -- equal to a 1Khz clock
-	constant opening_time : time := 3000 * CLKPeriod; -- equal to 3s
+	constant opening_time : integer := 3; -- equal to 3s
 	
 	-- declaring needed blocks
 	-- REGISTER --------------------------
@@ -52,7 +51,7 @@ architecture a_elevator of elevator is
 		output : out std_logic_vector(1 downto 0);
 		act : out std_logic
 		);
-	end component
+	end component;
 	
 	-- COUNTER ---------------------------
 	component counter is
@@ -64,22 +63,23 @@ architecture a_elevator of elevator is
 	end component;
 	
 	-- TIMER -----------------------------
-	entity timer is
+	component timer is
 	port (
 		clk, reset, enable: in std_logic;
-		elapsed: out time;
+		elapsed: out integer
 	);
-	end timer;
+	end component;
 	-- internal signal declarations to link components
     signal pcod_s, floor_s, target_s: std_logic_vector(1 downto 0);
     signal count_s: std_logic_vector(1 downto 0);
-    signal sense_s, pressed_s, floor_pass_s, enable_s: std_logic;
-    signal elapsed_s: time;
+    signal sense_s, pressed_s, floor_pass_s, busy_s: std_logic;
+    signal elapsed_s: integer;
     signal opening_s: std_logic;
-	enable_s <= '1';
+	signal enable_s : std_logic;
 	
 begin
 	
+	enable_s <= '1';
 	-- instantiating button encoder component
 	-- mapping all components with their signals	
 	en: encoder port map ( 
@@ -100,7 +100,7 @@ begin
 	r1: regist port map (
 		input => count_s,
 		output => floor_s,
-		enable => not busy,
+		enable => enable_s,
 		clk => CLK,
 		reset => RESET );
 	ct: counter port map (
@@ -111,30 +111,27 @@ begin
 		clk => CLK,
 		reset => RESET );
 	tim: timer port map (
-		elapsed => elapsed_s;
-		clk => clk;
-		enable => opening );
+		elapsed => elapsed_s,
+		clk => clk,
+		reset => not enable_s,
+		enable => opening_s ); -- the timer starts when opening_s is active
 	
 		
-	process (clk, reset)
+	sync_process: process (clk, reset)
 	begin
 		if reset='1' then
-			curr_state <= '0';
+			curr_state <= s0;
 		elsif rising_edge(clk) then
 			curr_state <= next_state;
 		end if;
-	end process;
-	
-	process (curr_state, B, S)
+	end process sync_process;
+	state_change: process (curr_state, B, S)
 	begin
 		case curr_state is
 			when s0 =>
-				MOTOR <= '0';
-				FLOOR <= "00";
-				SENSE <= '0';
-				TARGET <= "00";
-				OPENING <= '0';
-				BUSY <= '0';
+                MOTOR <= '0';
+				opening_s <= '0';
+				busy_s <= '0';
 				if target_s > floor_s then
 					next_state <= s1;
 				else
@@ -143,8 +140,7 @@ begin
 			when s1 =>
 				MOTOR <= '1';
 				sense_s <= '1';
-				SENSE <= sense_s;
-				BUSY <= '1';
+				busy_s <= '1';
 				if target_s = floor_s then
 					next_state <= s2;
 				else
@@ -152,30 +148,43 @@ begin
 				end if;
 			when s2 =>
 				MOTOR <= '0';
-				OPENING <= '0';
-				
-				
-				
-		
-				
-					
-					
-					
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+				opening_s <= '1';
+				busy_s <= '1';
+                OPENING <= opening_s;
+                if elapsed_s = opening_time then
+                    next_state <= s3;
+                else
+                    next_state <= s2;
+                end if;
+            when s3 =>
+                MOTOR <= '0';
+                opening_s <= '0';
+                OPENING <= opening_s;
+                busy_s <= '0';
+                if target_s > floor_s then
+                    next_state <= s1;
+                elsif target_s < floor_s then
+                    next_state <= s4;
+                else
+                    next_state <= s3;
+                end if;
+            when s4 => 
+                MOTOR <= '1';
+                sense_s <= '0';
+                busy_s <= '1';
+                if target_s = floor_s then
+                    next_state <= s2;
+                else
+                    next_state <= s4;
+                end if;
+            when others =>
+                MOTOR <= '0';
+                next_state <= s3;
+        end case;
+    end process state_change;
+    TARGET <= target_s;
+    FLOOR <= floor_s;
+    SENSE <= sense_s;
+    BUSY <= busy_s;
+    
+end a_elevator;

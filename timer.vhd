@@ -11,21 +11,20 @@ use ieee.numeric_std.all;
 entity timer is
 	port (
 		clk, reset, enable: in std_logic;
-		elapsed: out time
+		elapsed: out integer
 	);
 end timer;
 
 architecture a_timer of timer is
-	constant clk_period : time := 1 ms; -- equal to a 1Khz clock
 	signal elapsed_s: integer;
 begin
 	process(reset, clk)
 	begin
 		if reset = '1' or enable = '0' then
-			elapsed_s <= '0';
+			elapsed_s <= 0;
 		elsif rising_edge(clk) then
 			elapsed_s <= elapsed_s + 1;
 		end if;
 	end process;
-	elapsed <= elapsed_s ms;
+	elapsed <= elapsed_s;
 end a_timer;

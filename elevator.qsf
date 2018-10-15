@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY MAX7000S
 set_global_assignment -name DEVICE "EPM7064SLC44-10"
-set_global_assignment -name TOP_LEVEL_ENTITY timer
+set_global_assignment -name TOP_LEVEL_ENTITY elevator
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 9.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "23:52:19  OCTOBER 14, 2018"
 set_global_assignment -name LAST_QUARTUS_VERSION 9.1
@@ -53,3 +53,8 @@ set_global_assignment -name VHDL_FILE edge_det.vhd
 set_global_assignment -name VHDL_FILE elevator.vhd
 set_global_assignment -name VHDL_FILE encoder.vhd
 set_global_assignment -name VHDL_FILE timer.vhd
+set_global_assignment -name SIMULATION_MODE FUNCTIONAL
+set_global_assignment -name VECTOR_WAVEFORM_FILE elevator_test.vwf
+set_global_assignment -name END_TIME "1000 ns"
+set_global_assignment -name INCREMENTAL_VECTOR_INPUT_SOURCE elevator_test.vwf
+set_global_assignment -name MISC_FILE "E:/ALTERA_PROJECTS/VHDL-LAB2/elevator.dpf"
