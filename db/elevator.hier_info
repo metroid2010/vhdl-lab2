@@ -4,21 +4,21 @@ CLK => regist:r0.clk
 CLK => regist:r1.clk
 CLK => counter:ct.clk
 CLK => timer:tim.clk
-CLK => curr_state.IN1
+CLK => curr_state~0.IN1
 RESET => edge_det:ed.reset
 RESET => regist:r0.reset
 RESET => regist:r1.reset
 RESET => counter:ct.reset
-RESET => curr_state.IN1
+RESET => curr_state~1.IN1
 S => edge_det:ed.input
 B[0] => encoder:en.input[0]
 B[1] => encoder:en.input[1]
 B[2] => encoder:en.input[2]
 B[3] => encoder:en.input[3]
 SENSE <= sense_s.DB_MAX_OUTPUT_PORT_TYPE
-MOTOR <= MOTOR.DB_MAX_OUTPUT_PORT_TYPE
-OPENING <= OPENING$latch.DB_MAX_OUTPUT_PORT_TYPE
-BUSY <= busy_s.DB_MAX_OUTPUT_PORT_TYPE
+MOTOR <= MOTOR~0.DB_MAX_OUTPUT_PORT_TYPE
+OPENING <= opening_s.DB_MAX_OUTPUT_PORT_TYPE
+BUSY <= busy_s~0.DB_MAX_OUTPUT_PORT_TYPE
 FLOOR[0] <= regist:r1.output[0]
 FLOOR[1] <= regist:r1.output[1]
 TARGET[0] <= regist:r0.output[0]
@@ -40,11 +40,11 @@ act <= Mux2.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |elevator|edge_det:ed
-input => output.IN1
+input => output~1.IN1
 input => q.DATAIN
 clk => q.CLK
 reset => q.ACLR
-output <= output.DB_MAX_OUTPUT_PORT_TYPE
+output <= output~1.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |elevator|regist:r0
@@ -52,10 +52,10 @@ reset => s_out[0].ACLR
 reset => s_out[1].ACLR
 clk => s_out[0].CLK
 clk => s_out[1].CLK
-enable => s_out[0].OUTPUTSELECT
-enable => s_out[1].OUTPUTSELECT
-input[0] => s_out[0].DATAB
-input[1] => s_out[1].DATAB
+enable => s_out[0]~1.OUTPUTSELECT
+enable => s_out[1]~2.OUTPUTSELECT
+input[0] => s_out[0]~1.DATAB
+input[1] => s_out[1]~2.DATAB
 output[0] <= s_out[0].DB_MAX_OUTPUT_PORT_TYPE
 output[1] <= s_out[1].DB_MAX_OUTPUT_PORT_TYPE
 
@@ -65,26 +65,26 @@ reset => s_out[0].ACLR
 reset => s_out[1].ACLR
 clk => s_out[0].CLK
 clk => s_out[1].CLK
-enable => s_out[0].OUTPUTSELECT
-enable => s_out[1].OUTPUTSELECT
-input[0] => s_out[0].DATAB
-input[1] => s_out[1].DATAB
+enable => s_out[0]~1.OUTPUTSELECT
+enable => s_out[1]~2.OUTPUTSELECT
+input[0] => s_out[0]~1.DATAB
+input[1] => s_out[1]~2.DATAB
 output[0] <= s_out[0].DB_MAX_OUTPUT_PORT_TYPE
 output[1] <= s_out[1].DB_MAX_OUTPUT_PORT_TYPE
 
 
 |elevator|counter:ct
-sensor => s_count[0].OUTPUTSELECT
-sensor => s_count[1].OUTPUTSELECT
-reset => process_0.IN1
+sensor => s_count[0]~2.OUTPUTSELECT
+sensor => s_count[1]~0.OUTPUTSELECT
+reset => process_0~1.IN1
 clk => s_count[0].CLK
 clk => s_count[1].CLK
-enable => process_0.IN0
-sense => s_count.OUTPUTSELECT
-sense => s_count.OUTPUTSELECT
+enable => process_0~0.IN0
+sense => s_count~5.OUTPUTSELECT
+sense => s_count~4.OUTPUTSELECT
 count[0] <= s_count[0].DB_MAX_OUTPUT_PORT_TYPE
 count[1] <= s_count[1].DB_MAX_OUTPUT_PORT_TYPE
-carry_out <= carry_out.DB_MAX_OUTPUT_PORT_TYPE
+carry_out <= carry_out~0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |elevator|timer:tim
@@ -120,8 +120,8 @@ clk => elapsed_s[28].CLK
 clk => elapsed_s[29].CLK
 clk => elapsed_s[30].CLK
 clk => elapsed_s[31].CLK
-reset => process_0.IN1
-enable => process_0.IN0
+reset => process_0~1.IN1
+enable => process_0~0.IN0
 elapsed[0] <= elapsed_s[0].DB_MAX_OUTPUT_PORT_TYPE
 elapsed[1] <= elapsed_s[1].DB_MAX_OUTPUT_PORT_TYPE
 elapsed[2] <= elapsed_s[2].DB_MAX_OUTPUT_PORT_TYPE

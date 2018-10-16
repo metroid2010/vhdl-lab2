@@ -1,6 +1,11 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="elevator">
-		<CBX_INST_ENTRY INSTANCE_NAME="|elevator|counter:ct|lpm_add_sub:Add0" CBX_FILE_NAME="add_sub_9ii.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|elevator|counter:ct|lpm_add_sub:Add0" CBX_FILE_NAME="add_sub_lnh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|elevator|encoder:en|lpm_mux:Mux1" CBX_FILE_NAME="mux_vbc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|elevator|timer:tim|lpm_add_sub:Add0" CBX_FILE_NAME="add_sub_8ph.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|elevator|counter:ct|lpm_add_sub:Add1" CBX_FILE_NAME="add_sub_mnh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|elevator|encoder:en|lpm_mux:Mux0" CBX_FILE_NAME="mux_vbc.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|elevator|encoder:en|lpm_mux:Mux2" CBX_FILE_NAME="mux_kdc.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

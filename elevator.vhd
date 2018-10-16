@@ -125,7 +125,7 @@ begin
 			curr_state <= next_state;
 		end if;
 	end process sync_process;
-	state_change: process (curr_state, B, S)
+	state_change: process (curr_state, floor_s, target_s)
 	begin
 		case curr_state is
 			when s0 =>
@@ -150,7 +150,6 @@ begin
 				MOTOR <= '0';
 				opening_s <= '1';
 				busy_s <= '1';
-                OPENING <= opening_s;
                 if elapsed_s = opening_time then
                     next_state <= s3;
                 else
@@ -159,7 +158,6 @@ begin
             when s3 =>
                 MOTOR <= '0';
                 opening_s <= '0';
-                OPENING <= opening_s;
                 busy_s <= '0';
                 if target_s > floor_s then
                     next_state <= s1;
@@ -186,5 +184,5 @@ begin
     FLOOR <= floor_s;
     SENSE <= sense_s;
     BUSY <= busy_s;
-    
+    OPENING <= opening_s;
 end a_elevator;

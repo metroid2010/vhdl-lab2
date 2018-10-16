@@ -68,44 +68,44 @@ Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage 
 GND+                         : 1         :        :                   :         :           :                
 GND+                         : 2         :        :                   :         :           :                
 VCC                          : 3         : power  :                   :         :           :                
-B[0]                         : 4         : input  : TTL               :         :           : N              
-S                            : 5         : input  : TTL               :         :           : N              
+RESET                        : 4         : input  : TTL               :         :           : N              
+B[0]                         : 5         : input  : TTL               :         :           : N              
 RESERVED                     : 6         :        :                   :         :           :                
 TDI                          : 7         : input  : TTL               :         :           : N              
 RESERVED                     : 8         :        :                   :         :           :                
-RESERVED                     : 9         :        :                   :         :           :                
+B[2]                         : 9         : input  : TTL               :         :           : N              
 GND                          : 10        : gnd    :                   :         :           :                
 RESERVED                     : 11        :        :                   :         :           :                
 RESERVED                     : 12        :        :                   :         :           :                
 TMS                          : 13        : input  : TTL               :         :           : N              
-OPENING                      : 14        : output : TTL               :         :           : N              
+BUSY                         : 14        : output : TTL               :         :           : N              
 VCC                          : 15        : power  :                   :         :           :                
 FLOOR[0]                     : 16        : output : TTL               :         :           : N              
 TARGET[0]                    : 17        : output : TTL               :         :           : N              
 TARGET[1]                    : 18        : output : TTL               :         :           : N              
-BUSY                         : 19        : output : TTL               :         :           : N              
+SENSE                        : 19        : output : TTL               :         :           : N              
 MOTOR                        : 20        : output : TTL               :         :           : N              
-SENSE                        : 21        : output : TTL               :         :           : N              
+OPENING                      : 21        : output : TTL               :         :           : N              
 GND                          : 22        : gnd    :                   :         :           :                
 VCC                          : 23        : power  :                   :         :           :                
 RESERVED                     : 24        :        :                   :         :           :                
 RESERVED                     : 25        :        :                   :         :           :                
-RESERVED                     : 26        :        :                   :         :           :                
-RESERVED                     : 27        :        :                   :         :           :                
-B[3]                         : 28        : input  : TTL               :         :           : N              
-B[2]                         : 29        : input  : TTL               :         :           : N              
+FLOOR[1]                     : 26        : output : TTL               :         :           : N              
+B[1]                         : 27        : input  : TTL               :         :           : N              
+RESERVED                     : 28        :        :                   :         :           :                
+RESERVED                     : 29        :        :                   :         :           :                
 GND                          : 30        : gnd    :                   :         :           :                
-RESET                        : 31        : input  : TTL               :         :           : N              
+RESERVED                     : 31        :        :                   :         :           :                
 TCK                          : 32        : input  : TTL               :         :           : N              
 RESERVED                     : 33        :        :                   :         :           :                
 RESERVED                     : 34        :        :                   :         :           :                
 VCC                          : 35        : power  :                   :         :           :                
 RESERVED                     : 36        :        :                   :         :           :                
-FLOOR[1]                     : 37        : output : TTL               :         :           : N              
+RESERVED                     : 37        :        :                   :         :           :                
 TDO                          : 38        : output : TTL               :         :           : N              
 RESERVED                     : 39        :        :                   :         :           :                
-B[1]                         : 40        : input  : TTL               :         :           : N              
-RESERVED                     : 41        :        :                   :         :           :                
+S                            : 40        : input  : TTL               :         :           : N              
+B[3]                         : 41        : input  : TTL               :         :           : N              
 GND                          : 42        : gnd    :                   :         :           :                
 CLK                          : 43        : input  : TTL               :         :           : N              
 GND+                         : 44        :        :                   :         :           :                
