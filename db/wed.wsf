@@ -23,8 +23,8 @@ applicable agreement for further details.
 VECTOR("E:/ALTERA_PROJECTS/VHDL-LAB2/elevator_test.vwf")
 {
 	ZOOM{
-		ZBEGIN = 0;
-		ZEND = 465600;
+		ZBEGIN = 97200;
+		ZEND = 562800;
 		NUMERATOR = 1164;
 		DENOMINATOR = 465600;
 		TOP_INDEX = 0;

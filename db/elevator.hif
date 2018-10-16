@@ -96,50 +96,6 @@ a36c8ec425c8a2589af98b2d4daabc3
 
 # end
 # entity
-regist
-# storage
-db|elevator.(3).cnf
-db|elevator.(3).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-regist.vhd
-946bc4ddc89358646e5e2765bf27fa
-5
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-}
-# user_parameter {
- constraint(input)
-1 downto 0
-PARAMETER_STRING
-USR
- constraint(output)
-1 downto 0
-PARAMETER_STRING
-USR
-}
-# hierarchies {
-regist:r0
-regist:r1
-}
-# lmf
-c:|altera|91|quartus|lmf|maxplus2.lmf
-a36c8ec425c8a2589af98b2d4daabc3
-# macro_sequence
-
-# end
-# entity
 counter
 # storage
 db|elevator.(4).cnf
@@ -171,39 +127,6 @@ USR
 }
 # hierarchies {
 counter:ct
-}
-# lmf
-c:|altera|91|quartus|lmf|maxplus2.lmf
-a36c8ec425c8a2589af98b2d4daabc3
-# macro_sequence
-
-# end
-# entity
-timer
-# storage
-db|elevator.(5).cnf
-db|elevator.(5).cnf
-# logic_option {
-AUTO_RAM_RECOGNITION
-ON
-}
-# case_insensitive
-# source_file
-timer.vhd
-a1e1b8c4c78dc4246ad02f3f28489a9
-5
-# internal_option {
-HDL_INITIAL_FANOUT_LIMIT
-OFF
-AUTO_RESOURCE_SHARING
-OFF
-AUTO_RAM_RECOGNITION
-ON
-AUTO_ROM_RECOGNITION
-ON
-}
-# hierarchies {
-timer:tim
 }
 # lmf
 c:|altera|91|quartus|lmf|maxplus2.lmf
@@ -946,6 +869,83 @@ data0
 
 # end
 # entity
+timer
+# storage
+db|elevator.(5).cnf
+db|elevator.(5).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+timer.vhd
+6fb74c19bafc1f1da3b6826f2bde48f3
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# hierarchies {
+timer:tim
+}
+# lmf
+c:|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
+regist
+# storage
+db|elevator.(3).cnf
+db|elevator.(3).cnf
+# logic_option {
+AUTO_RAM_RECOGNITION
+ON
+}
+# case_insensitive
+# source_file
+regist.vhd
+36f785a5b9dc174be719c37cc18718
+5
+# internal_option {
+HDL_INITIAL_FANOUT_LIMIT
+OFF
+AUTO_RESOURCE_SHARING
+OFF
+AUTO_RAM_RECOGNITION
+ON
+AUTO_ROM_RECOGNITION
+ON
+}
+# user_parameter {
+ constraint(input)
+1 downto 0
+PARAMETER_STRING
+USR
+ constraint(output)
+1 downto 0
+PARAMETER_STRING
+USR
+}
+# hierarchies {
+regist:r0
+regist:r1
+}
+# lmf
+c:|altera|91|quartus|lmf|maxplus2.lmf
+a36c8ec425c8a2589af98b2d4daabc3
+# macro_sequence
+
+# end
+# entity
 elevator
 # storage
 db|elevator.(0).cnf
@@ -957,7 +957,7 @@ ON
 # case_insensitive
 # source_file
 elevator.vhd
-6b98c02b6487feaf64e0e27a724cfa
+f0a1f0e695c0c4c7e67a8d0d853dc1c
 5
 # internal_option {
 HDL_INITIAL_FANOUT_LIMIT

@@ -91,13 +91,13 @@ begin
 		output => floor_pass_s,
 		clk => CLK,
 		reset => RESET );
-	r0: regist port map (
+	r0: regist port map ( --target
 		input => pcod_s,
 		output => target_s,
-		enable => pressed_s,
+		enable => (pressed_s and not busy_s),
 		clk => CLK,
 		reset => RESET );
-	r1: regist port map (
+	r1: regist port map ( --floor
 		input => count_s,
 		output => floor_s,
 		enable => enable_s,
@@ -125,13 +125,14 @@ begin
 			curr_state <= next_state;
 		end if;
 	end process sync_process;
-	state_change: process (curr_state, floor_s, target_s)
+	state_change: process (curr_state, floor_s, target_s, elapsed_s)
 	begin
 		case curr_state is
 			when s0 =>
                 MOTOR <= '0';
 				opening_s <= '0';
 				busy_s <= '0';
+				sense_s <= '0';
 				if target_s > floor_s then
 					next_state <= s1;
 				else
@@ -141,6 +142,7 @@ begin
 				MOTOR <= '1';
 				sense_s <= '1';
 				busy_s <= '1';
+				opening_s <= '0';
 				if target_s = floor_s then
 					next_state <= s2;
 				else
@@ -150,6 +152,7 @@ begin
 				MOTOR <= '0';
 				opening_s <= '1';
 				busy_s <= '1';
+				sense_s <= '0';
                 if elapsed_s = opening_time then
                     next_state <= s3;
                 else
@@ -159,6 +162,7 @@ begin
                 MOTOR <= '0';
                 opening_s <= '0';
                 busy_s <= '0';
+                sense_s <= '0';
                 if target_s > floor_s then
                     next_state <= s1;
                 elsif target_s < floor_s then
@@ -170,6 +174,7 @@ begin
                 MOTOR <= '1';
                 sense_s <= '0';
                 busy_s <= '1';
+                opening_s <= '0';
                 if target_s = floor_s then
                     next_state <= s2;
                 else

@@ -66,10 +66,10 @@ CHIP  "elevator"  ASSIGNED TO AN: EPM7064SLC44-10
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
 -------------------------------------------------------------------------------------------------------------
 GND+                         : 1         :        :                   :         :           :                
-GND+                         : 2         :        :                   :         :           :                
+B[3]                         : 2         : input  : TTL               :         :           : N              
 VCC                          : 3         : power  :                   :         :           :                
-RESET                        : 4         : input  : TTL               :         :           : N              
-B[0]                         : 5         : input  : TTL               :         :           : N              
+S                            : 4         : input  : TTL               :         :           : N              
+RESET                        : 5         : input  : TTL               :         :           : N              
 RESERVED                     : 6         :        :                   :         :           :                
 TDI                          : 7         : input  : TTL               :         :           : N              
 RESERVED                     : 8         :        :                   :         :           :                
@@ -78,21 +78,21 @@ GND                          : 10        : gnd    :                   :         
 RESERVED                     : 11        :        :                   :         :           :                
 RESERVED                     : 12        :        :                   :         :           :                
 TMS                          : 13        : input  : TTL               :         :           : N              
-BUSY                         : 14        : output : TTL               :         :           : N              
+TARGET[1]                    : 14        : output : TTL               :         :           : N              
 VCC                          : 15        : power  :                   :         :           :                
-FLOOR[0]                     : 16        : output : TTL               :         :           : N              
+BUSY                         : 16        : output : TTL               :         :           : N              
 TARGET[0]                    : 17        : output : TTL               :         :           : N              
-TARGET[1]                    : 18        : output : TTL               :         :           : N              
-SENSE                        : 19        : output : TTL               :         :           : N              
+SENSE                        : 18        : output : TTL               :         :           : N              
+OPENING                      : 19        : output : TTL               :         :           : N              
 MOTOR                        : 20        : output : TTL               :         :           : N              
-OPENING                      : 21        : output : TTL               :         :           : N              
+FLOOR[0]                     : 21        : output : TTL               :         :           : N              
 GND                          : 22        : gnd    :                   :         :           :                
 VCC                          : 23        : power  :                   :         :           :                
 RESERVED                     : 24        :        :                   :         :           :                
 RESERVED                     : 25        :        :                   :         :           :                
-FLOOR[1]                     : 26        : output : TTL               :         :           : N              
+RESERVED                     : 26        :        :                   :         :           :                
 B[1]                         : 27        : input  : TTL               :         :           : N              
-RESERVED                     : 28        :        :                   :         :           :                
+B[0]                         : 28        : input  : TTL               :         :           : N              
 RESERVED                     : 29        :        :                   :         :           :                
 GND                          : 30        : gnd    :                   :         :           :                
 RESERVED                     : 31        :        :                   :         :           :                
@@ -104,8 +104,8 @@ RESERVED                     : 36        :        :                   :         
 RESERVED                     : 37        :        :                   :         :           :                
 TDO                          : 38        : output : TTL               :         :           : N              
 RESERVED                     : 39        :        :                   :         :           :                
-S                            : 40        : input  : TTL               :         :           : N              
-B[3]                         : 41        : input  : TTL               :         :           : N              
+FLOOR[1]                     : 40        : output : TTL               :         :           : N              
+RESERVED                     : 41        :        :                   :         :           :                
 GND                          : 42        : gnd    :                   :         :           :                
 CLK                          : 43        : input  : TTL               :         :           : N              
 GND+                         : 44        :        :                   :         :           :                

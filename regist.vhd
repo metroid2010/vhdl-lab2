@@ -24,8 +24,10 @@ begin
             
 --enable signal is needed for cases in which the elevator is moving and a user presses a button,
 --so that the system ignores said signal and keeps moving to the target
-        elsif clk'EVENT and clk = '1' and enable = '1' then
+        elsif clk'EVENT and clk = '1' and enable='1' then
             s_out <= input;
+        else
+            s_out <= s_out;
         end if;
     end process;
 

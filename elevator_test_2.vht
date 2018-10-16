@@ -61,7 +61,7 @@ BEGIN
 END elevator_arch;
 
 -- clock process def
-clk_process: process
+process
 begin
 	CLK <= '0';
 	wait for clk_period/2;

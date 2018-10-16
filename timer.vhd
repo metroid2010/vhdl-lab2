@@ -18,7 +18,7 @@ end timer;
 architecture a_timer of timer is
 	signal elapsed_s: integer;
 begin
-	process(reset, clk)
+	process(reset, clk, enable)
 	begin
 		if reset = '1' or enable = '0' then
 			elapsed_s <= 0;
